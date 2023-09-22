@@ -70,9 +70,9 @@
             Emailabel.BackColor = SystemColors.ButtonHighlight;
             Emailabel.Location = new Point(472, 526);
             Emailabel.Name = "Emailabel";
-            Emailabel.Size = new Size(176, 37);
+            Emailabel.Size = new Size(165, 37);
             Emailabel.TabIndex = 3;
-            Emailabel.Text = "E-Mail adress";
+            Emailabel.Text = "E-Mail adres";
             Emailabel.Click += label1_Click;
             // 
             // passwordlabel

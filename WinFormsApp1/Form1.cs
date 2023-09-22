@@ -1,4 +1,6 @@
-namespace WinFormsApp1
+using Mailkit;
+
+namespace WinFormsApp1;
 {
     public partial class Form1 : Form
     {
@@ -9,6 +11,8 @@ namespace WinFormsApp1
 
         private void loginBT_Click(object sender, EventArgs e)
         {
+         SmtpClient client =
+
             // Retrieve user input from the textboxes
             string userEmail = textBoxEmail.Text;
             string userPassword = textBoxPassword.Text;

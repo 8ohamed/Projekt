@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Skrivebord\\Software teknologi\\WinFormsApp1\\WinFormsApp1.csproj": {}
+    "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Dokumenter\\GitHub\\Projekt\\WinFormsApp1\\WinFormsApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Skrivebord\\Software teknologi\\WinFormsApp1\\WinFormsApp1.csproj": {
+    "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Dokumenter\\GitHub\\Projekt\\WinFormsApp1\\WinFormsApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Skrivebord\\Software teknologi\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Dokumenter\\GitHub\\Projekt\\WinFormsApp1\\WinFormsApp1.csproj",
         "projectName": "WinFormsApp1",
-        "projectPath": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Skrivebord\\Software teknologi\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectPath": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Dokumenter\\GitHub\\Projekt\\WinFormsApp1\\WinFormsApp1.csproj",
         "packagesPath": "C:\\Users\\Mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Skrivebord\\Software teknologi\\WinFormsApp1\\obj\\",
+        "outputPath": "C:\\Users\\Mohamed\\OneDrive - Aarhus universitet\\Dokumenter\\GitHub\\Projekt\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
