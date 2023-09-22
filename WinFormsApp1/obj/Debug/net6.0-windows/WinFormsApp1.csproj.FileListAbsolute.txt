@@ -17,3 +17,33 @@ C:\Users\Mohamed\OneDrive - Aarhus universitet\Skrivebord\Software teknologi\Win
 C:\Users\Mohamed\OneDrive - Aarhus universitet\Skrivebord\Software teknologi\WinFormsApp1\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
 C:\Users\Mohamed\OneDrive - Aarhus universitet\Skrivebord\Software teknologi\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form2.resources
 C:\Users\Mohamed\OneDrive - Aarhus universitet\Skrivebord\Software teknologi\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form3.resources
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.exe
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.dll.config
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.deps.json
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\MailKit.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\MimeKit.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\System.Formats.Asn1.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\System.Security.Cryptography.Pkcs.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\System.Text.Encoding.CodePages.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form1.resources
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form2.resources
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form3.resources
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Properties.Resources.resources
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.csproj.CopyComplete
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\refint\WinFormsApp1.dll
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\Mohamed\OneDrive - Aarhus universitet\Dokumenter\GitHub\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll

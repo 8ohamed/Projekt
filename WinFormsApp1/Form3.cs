@@ -18,11 +18,8 @@ namespace WinFormsApp1
         public Form3()
         {
             InitializeComponent();
-            userEmail = string.Empty;
-            userPassword = string.Empty;
+
         }
-        public string? userEmail { get; set; }
-        public string? userPassword { get; set; }
 
         private void HomeFcompose_Click(object sender, EventArgs e)
         {
@@ -47,10 +44,12 @@ namespace WinFormsApp1
             string recipientEmail = receiverAdress.Text;
 
             // Email subject and message
+
             string subject = Subjectbox.Text;
             string message = Messagebox.Text;
-            string useremail = userEmail;
-            string userpassword = userPassword;
+            string useremail = Properties.Settings.Default.current_username;
+
+            string userpassword = Properties.Settings.Default.current_password;
 
             // Create a new SmtpClient instance
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")

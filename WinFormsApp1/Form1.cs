@@ -1,6 +1,7 @@
-using Mailkit;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
-namespace WinFormsApp1;
+namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
@@ -11,23 +12,33 @@ namespace WinFormsApp1;
 
         private void loginBT_Click(object sender, EventArgs e)
         {
-         SmtpClient client =
+            try
+            {
 
-            // Retrieve user input from the textboxes
-            string userEmail = textBoxEmail.Text;
-            string userPassword = textBoxPassword.Text;
-            Form3 form3 = new Form3();
-            form3.userEmail = textBoxEmail.Text;
-            form3.userPassword = textBoxPassword.Text;
-            form3.Show();
+                // Retrieve user input from the textboxes
+                string userEmail = textBoxEmail.Text;
+                Properties.Settings.Default.current_username = userEmail;
+                string userPassword = textBoxPassword.Text;
+                Properties.Settings.Default.current_password = userPassword;
+
+                SmtpClient client = new SmtpClient();
+
+                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.SslOnConnect);
+
+                client.Authenticate(userEmail, userPassword);
 
 
-            // Here is the code for switching forms when pressing a button 
-            Form2 Home = new Form2();
+ 
 
-
-            this.Hide();
-            Home.Show();
+            }
+            catch { 
+            
+            
+            }
+                // Here is the code for switching forms when pressing a button 
+                Form2 Home = new Form2();
+                this.Hide();
+                Home.Show();
 
 
 
