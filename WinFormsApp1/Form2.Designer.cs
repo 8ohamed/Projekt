@@ -29,45 +29,46 @@
         private void InitializeComponent()
         {
             InboxBT1 = new Button();
-            Compose = new Button();
             button3 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // InboxBT1
             // 
-            InboxBT1.Location = new Point(1, 103);
+            InboxBT1.Location = new Point(1, 114);
             InboxBT1.Name = "InboxBT1";
             InboxBT1.Size = new Size(275, 111);
             InboxBT1.TabIndex = 0;
-            InboxBT1.Text = "InBox";
+            InboxBT1.Text = "Compose";
             InboxBT1.UseVisualStyleBackColor = true;
             InboxBT1.Click += InboxBT1_Click;
             // 
-            // Compose
-            // 
-            Compose.Location = new Point(1, 211);
-            Compose.Name = "Compose";
-            Compose.Size = new Size(275, 111);
-            Compose.TabIndex = 1;
-            Compose.Text = "Compose";
-            Compose.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
-            button3.Location = new Point(1, 318);
+            button3.Location = new Point(1, 220);
             button3.Name = "button3";
             button3.Size = new Size(275, 111);
             button3.TabIndex = 2;
-            button3.Text = "button3";
+            button3.Text = "Important";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1, 326);
+            button1.Name = "button1";
+            button1.Size = new Size(275, 111);
+            button1.TabIndex = 3;
+            button1.Text = "Blacklist";
+            button1.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1810, 952);
+            Controls.Add(button1);
             Controls.Add(button3);
-            Controls.Add(Compose);
             Controls.Add(InboxBT1);
             Name = "Form2";
             Text = "Form2";
@@ -77,7 +78,7 @@
         #endregion
 
         private Button InboxBT1;
-        private Button Compose;
         private Button button3;
+        private Button button1;
     }
 }

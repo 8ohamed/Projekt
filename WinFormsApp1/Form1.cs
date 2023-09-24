@@ -23,7 +23,7 @@ namespace WinFormsApp1
 
                 SmtpClient client = new SmtpClient();
 
-                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.SslOnConnect);
+                client.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
 
                 client.Authenticate(userEmail, userPassword);
 

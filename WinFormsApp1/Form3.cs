@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
-
+//using MailKit.Net.Smtp;
+//using MailKit.Security;
 namespace WinFormsApp1
 {
 
