@@ -39,5 +39,10 @@ namespace WinFormsApp1
         {
             Environment.Exit(0);
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

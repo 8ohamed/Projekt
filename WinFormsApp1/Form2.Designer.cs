@@ -76,6 +76,7 @@
             label2.Size = new Size(255, 99);
             label2.TabIndex = 5;
             label2.Text = "Inbox";
+            label2.Click += label2_Click;
             // 
             // button2
             // 
