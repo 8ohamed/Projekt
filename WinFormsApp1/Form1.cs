@@ -1,5 +1,7 @@
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using MimeKit;
+using System;
 
 namespace WinFormsApp1
 {
@@ -14,36 +16,45 @@ namespace WinFormsApp1
         {
             try
             {
-
                 // Retrieve user input from the textboxes
                 string userEmail = textBoxEmail.Text;
-                Properties.Settings.Default.current_username = userEmail;
                 string userPassword = textBoxPassword.Text;
-                Properties.Settings.Default.current_password = userPassword;
 
-                SmtpClient client = new SmtpClient();
+                // Check if both email and password are provided
+                if (string.IsNullOrWhiteSpace(userEmail) || string.IsNullOrWhiteSpace(userPassword))
+                {
+                    MessageBox.Show("Please enter both email and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Exit the method without attempting to authenticate
+                }
 
-                client.Connect("smtp.gmail.com", 587, SecureSocketOptions.SslOnConnect);
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    client.Authenticate(userEmail, userPassword);
 
-                client.Authenticate(userEmail, userPassword);
-
-
- 
-
+                    // Authentication successful
+                    // Here is the code for switching forms when pressing a button 
+                    Form2 inbox = new Form2();
+                    this.Hide();
+                    inbox.Show();
+                }
             }
-            catch { 
-            
-            
+            catch (AuthenticationException)
+            {
+                // Authentication failed due to incorrect password
+                MessageBox.Show("Authentication failed. The password is incorrect.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                // Here is the code for switching forms when pressing a button 
-                Form2 Home = new Form2();
-                this.Hide();
-                Home.Show();
-
-
-
+            catch (InvalidOperationException ex)
+            {
+                // Handle an invalid operation, such as attempting to connect without network
+                MessageBox.Show($"An error occurred: {ex.Message}", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions here
+                MessageBox.Show($"An error occurred while connecting to the server: {ex.Message}", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

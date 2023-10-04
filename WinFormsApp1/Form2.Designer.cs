@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             InboxBT1 = new Button();
-            button3 = new Button();
-            button1 = new Button();
             label2 = new Label();
-            button2 = new Button();
             SearchBar = new TextBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            sign_out = new Button();
             SuspendLayout();
             // 
             // InboxBT1
@@ -46,25 +44,6 @@
             InboxBT1.Text = "Compose";
             InboxBT1.UseVisualStyleBackColor = true;
             InboxBT1.Click += InboxBT1_Click;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(1, 220);
-            button3.Name = "button3";
-            button3.Size = new Size(275, 111);
-            button3.TabIndex = 2;
-            button3.Text = "Important";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(1, 326);
-            button1.Name = "button1";
-            button1.Size = new Size(275, 111);
-            button1.TabIndex = 3;
-            button1.Text = "Blacklist";
-            button1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -78,34 +57,33 @@
             label2.Text = "Inbox";
             label2.Click += label2_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(1, 433);
-            button2.Name = "button2";
-            button2.Size = new Size(275, 111);
-            button2.TabIndex = 6;
-            button2.Text = "Bin";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // SearchBar
             // 
             SearchBar.Cursor = Cursors.Hand;
-            SearchBar.Location = new Point(485, 39);
+            SearchBar.Location = new Point(393, 30);
             SearchBar.Name = "SearchBar";
             SearchBar.PlaceholderText = "Search ....";
             SearchBar.Size = new Size(947, 43);
             SearchBar.TabIndex = 7;
+            // 
+            // sign_out
+            // 
+            sign_out.Location = new Point(1440, 59);
+            sign_out.Name = "sign_out";
+            sign_out.Size = new Size(169, 52);
+            sign_out.TabIndex = 8;
+            sign_out.Text = "Sign out";
+            sign_out.UseVisualStyleBackColor = true;
+            sign_out.Click += sign_out_Click;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1810, 952);
+            Controls.Add(sign_out);
             Controls.Add(SearchBar);
-            Controls.Add(button2);
             Controls.Add(label2);
-            Controls.Add(button1);
-            Controls.Add(button3);
             Controls.Add(InboxBT1);
             Name = "Form2";
             Text = "Form2";
@@ -118,11 +96,9 @@
         #endregion
 
         private Button InboxBT1;
-        private Button button3;
-        private Button button1;
         private Label label2;
-        private Button button2;
         private TextBox SearchBar;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Button sign_out;
     }
 }

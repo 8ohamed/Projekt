@@ -37,9 +37,7 @@
             label3 = new Label();
             label4 = new Label();
             SendBT = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            sign_out = new Button();
             SuspendLayout();
             // 
             // HomeFcompose
@@ -126,41 +124,22 @@
             SendBT.UseVisualStyleBackColor = true;
             SendBT.Click += SendBT_Click;
             // 
-            // button1
+            // sign_out
             // 
-            button1.Location = new Point(2, 101);
-            button1.Name = "button1";
-            button1.Size = new Size(169, 114);
-            button1.TabIndex = 10;
-            button1.Text = "Important";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(2, 208);
-            button2.Name = "button2";
-            button2.Size = new Size(169, 114);
-            button2.TabIndex = 11;
-            button2.Text = "Blacklist";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(2, 318);
-            button3.Name = "button3";
-            button3.Size = new Size(169, 114);
-            button3.TabIndex = 12;
-            button3.Text = "Bin";
-            button3.UseVisualStyleBackColor = true;
+            sign_out.Location = new Point(12, 884);
+            sign_out.Name = "sign_out";
+            sign_out.Size = new Size(219, 52);
+            sign_out.TabIndex = 10;
+            sign_out.Text = "Sign Out";
+            sign_out.UseVisualStyleBackColor = true;
+            sign_out.Click += sign_out_Click;
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2003, 986);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(sign_out);
             Controls.Add(SendBT);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -188,8 +167,6 @@
         private Label label3;
         private Label label4;
         private Button SendBT;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button sign_out;
     }
 }

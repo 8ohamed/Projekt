@@ -15,12 +15,14 @@ namespace WinFormsApp1
         public Form2()
         {
             InitializeComponent();
+            sign_out.Click += sign_out_Click;
+
         }
 
         private void InboxBT1_Click(object sender, EventArgs e)
         {
             Form3 Compose = new Form3();
-            this.Hide();
+            this.Close();
             Compose.Show();
 
         }
@@ -43,6 +45,13 @@ namespace WinFormsApp1
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void sign_out_Click(object sender, EventArgs e)
+        {
+            Form1 loginForm = new Form1();
+            loginForm.Show();
+            this.Close();
         }
     }
 }

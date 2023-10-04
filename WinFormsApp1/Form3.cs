@@ -22,6 +22,7 @@ namespace WinFormsApp1
         public Form3()
         {
             InitializeComponent();
+            sign_out.Click += sign_out_Click;
 
         }
 
@@ -135,6 +136,13 @@ namespace WinFormsApp1
         {
             Environment.Exit(0);
 
+        }
+
+        private void sign_out_Click(object sender, EventArgs e)
+        {
+            Form1 loginForm = new Form1();
+            loginForm.Show();
+            this.Hide();
         }
     }
 }
