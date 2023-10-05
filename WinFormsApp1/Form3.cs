@@ -22,7 +22,9 @@ namespace WinFormsApp1
         public Form3()
         {
             InitializeComponent();
+#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             sign_out.Click += sign_out_Click;
+#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
 
         }
 
@@ -60,6 +62,11 @@ namespace WinFormsApp1
 
             try
             {
+                if (string.IsNullOrWhiteSpace(useremail) || !IsValidEmail(useremail))
+                {
+                    MessageBox.Show("Please enter a valid sender email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Input validation
                 if (string.IsNullOrWhiteSpace(recipientEmail) || !IsValidEmail(recipientEmail))
@@ -143,6 +150,11 @@ namespace WinFormsApp1
             Form1 loginForm = new Form1();
             loginForm.Show();
             this.Hide();
+        }
+
+        private void Messagebox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

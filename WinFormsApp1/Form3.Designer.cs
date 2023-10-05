@@ -42,9 +42,10 @@
             // 
             // HomeFcompose
             // 
-            HomeFcompose.Location = new Point(2, 0);
+            HomeFcompose.Location = new Point(1, 0);
+            HomeFcompose.Margin = new Padding(1, 1, 1, 1);
             HomeFcompose.Name = "HomeFcompose";
-            HomeFcompose.Size = new Size(169, 106);
+            HomeFcompose.Size = new Size(79, 43);
             HomeFcompose.TabIndex = 0;
             HomeFcompose.Text = "Inbox";
             HomeFcompose.UseVisualStyleBackColor = true;
@@ -55,43 +56,49 @@
             label1.AutoSize = true;
             label1.FlatStyle = FlatStyle.System;
             label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(637, 35);
+            label1.Location = new Point(297, 14);
+            label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(548, 37);
+            label1.Size = new Size(238, 15);
             label1.TabIndex = 1;
             label1.Text = "                                  Sending an E-mail           ";
             label1.Click += label1_Click;
             // 
             // receiverAdress
             // 
-            receiverAdress.Location = new Point(376, 112);
+            receiverAdress.Location = new Point(175, 45);
+            receiverAdress.Margin = new Padding(1, 1, 1, 1);
             receiverAdress.Name = "receiverAdress";
-            receiverAdress.Size = new Size(977, 43);
+            receiverAdress.Size = new Size(458, 23);
             receiverAdress.TabIndex = 2;
             receiverAdress.TextChanged += receiverAdress_TextChanged;
             // 
             // Subjectbox
             // 
-            Subjectbox.Location = new Point(376, 183);
+            Subjectbox.Location = new Point(175, 74);
+            Subjectbox.Margin = new Padding(1, 1, 1, 1);
             Subjectbox.Name = "Subjectbox";
-            Subjectbox.Size = new Size(319, 43);
+            Subjectbox.Size = new Size(151, 23);
             Subjectbox.TabIndex = 3;
             // 
             // Messagebox
             // 
-            Messagebox.Font = new Font("Helonia", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            Messagebox.Location = new Point(305, 250);
+            Messagebox.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            Messagebox.Location = new Point(142, 101);
+            Messagebox.Margin = new Padding(1, 1, 1, 1);
             Messagebox.Name = "Messagebox";
-            Messagebox.Size = new Size(1489, 659);
+            Messagebox.Size = new Size(697, 270);
             Messagebox.TabIndex = 5;
             Messagebox.Text = "";
+            Messagebox.TextChanged += Messagebox_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(244, 118);
+            label2.Location = new Point(114, 48);
+            label2.Margin = new Padding(1, 0, 1, 0);
             label2.Name = "label2";
-            label2.Size = new Size(44, 37);
+            label2.Size = new Size(19, 15);
             label2.TabIndex = 6;
             label2.Text = "To";
             label2.Click += label2_Click;
@@ -99,26 +106,29 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(244, 189);
+            label3.Location = new Point(114, 77);
+            label3.Margin = new Padding(1, 0, 1, 0);
             label3.Name = "label3";
-            label3.Size = new Size(104, 37);
+            label3.Size = new Size(46, 15);
             label3.TabIndex = 7;
             label3.Text = "Subject";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(219, 285);
+            label4.Location = new Point(102, 116);
+            label4.Margin = new Padding(1, 0, 1, 0);
             label4.Name = "label4";
-            label4.Size = new Size(69, 37);
+            label4.Size = new Size(30, 15);
             label4.TabIndex = 8;
             label4.Text = "Mail";
             // 
             // SendBT
             // 
-            SendBT.Location = new Point(1833, 846);
+            SendBT.Location = new Point(855, 343);
+            SendBT.Margin = new Padding(1, 1, 1, 1);
             SendBT.Name = "SendBT";
-            SendBT.Size = new Size(156, 90);
+            SendBT.Size = new Size(73, 36);
             SendBT.TabIndex = 9;
             SendBT.Text = "Send";
             SendBT.UseVisualStyleBackColor = true;
@@ -126,9 +136,10 @@
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(12, 884);
+            sign_out.Location = new Point(6, 358);
+            sign_out.Margin = new Padding(1, 1, 1, 1);
             sign_out.Name = "sign_out";
-            sign_out.Size = new Size(219, 52);
+            sign_out.Size = new Size(102, 21);
             sign_out.TabIndex = 10;
             sign_out.Text = "Sign Out";
             sign_out.UseVisualStyleBackColor = true;
@@ -136,9 +147,9 @@
             // 
             // Form3
             // 
-            AutoScaleDimensions = new SizeF(15F, 37F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2003, 986);
+            ClientSize = new Size(898, 400);
             Controls.Add(sign_out);
             Controls.Add(SendBT);
             Controls.Add(label4);
@@ -149,6 +160,7 @@
             Controls.Add(receiverAdress);
             Controls.Add(label1);
             Controls.Add(HomeFcompose);
+            Margin = new Padding(1, 1, 1, 1);
             Name = "Form3";
             Text = "'";
             FormClosed += Form3_FormClosed;

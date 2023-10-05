@@ -28,63 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            InboxBT1 = new Button();
-            label2 = new Label();
+            ComposeBT = new Button();
             SearchBar = new TextBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             sign_out = new Button();
+            folders_Box = new ListBox();
+            messages_box = new ListBox();
+            messageContentTextBox = new RichTextBox();
+            moveButton = new Button();
             SuspendLayout();
             // 
-            // InboxBT1
+            // ComposeBT
             // 
-            InboxBT1.Location = new Point(1, 114);
-            InboxBT1.Name = "InboxBT1";
-            InboxBT1.Size = new Size(275, 111);
-            InboxBT1.TabIndex = 0;
-            InboxBT1.Text = "Compose";
-            InboxBT1.UseVisualStyleBackColor = true;
-            InboxBT1.Click += InboxBT1_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BorderStyle = BorderStyle.FixedSingle;
-            label2.Location = new Point(12, 12);
-            label2.Name = "label2";
-            label2.Padding = new Padding(85, 30, 85, 30);
-            label2.Size = new Size(255, 99);
-            label2.TabIndex = 5;
-            label2.Text = "Inbox";
-            label2.Click += label2_Click;
+            ComposeBT.Location = new Point(675, 5);
+            ComposeBT.Margin = new Padding(1);
+            ComposeBT.Name = "ComposeBT";
+            ComposeBT.Size = new Size(79, 35);
+            ComposeBT.TabIndex = 0;
+            ComposeBT.Text = "Compose";
+            ComposeBT.UseVisualStyleBackColor = true;
+            ComposeBT.Click += InboxBT1_Click;
             // 
             // SearchBar
             // 
             SearchBar.Cursor = Cursors.Hand;
-            SearchBar.Location = new Point(393, 30);
+            SearchBar.Location = new Point(351, 13);
+            SearchBar.Margin = new Padding(1);
             SearchBar.Name = "SearchBar";
             SearchBar.PlaceholderText = "Search ....";
-            SearchBar.Size = new Size(947, 43);
+            SearchBar.Size = new Size(296, 23);
             SearchBar.TabIndex = 7;
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(1440, 59);
+            sign_out.Location = new Point(756, 6);
+            sign_out.Margin = new Padding(1);
             sign_out.Name = "sign_out";
-            sign_out.Size = new Size(169, 52);
+            sign_out.Size = new Size(79, 34);
             sign_out.TabIndex = 8;
             sign_out.Text = "Sign out";
             sign_out.UseVisualStyleBackColor = true;
             sign_out.Click += sign_out_Click;
             // 
+            // folders_Box
+            // 
+            folders_Box.FormattingEnabled = true;
+            folders_Box.ItemHeight = 15;
+            folders_Box.Location = new Point(10, 12);
+            folders_Box.Name = "folders_Box";
+            folders_Box.Size = new Size(160, 154);
+            folders_Box.TabIndex = 9;
+            folders_Box.SelectedIndexChanged += folders_Box_SelectedIndexChanged;
+            // 
+            // messages_box
+            // 
+            messages_box.FormattingEnabled = true;
+            messages_box.ItemHeight = 15;
+            messages_box.Location = new Point(10, 175);
+            messages_box.Name = "messages_box";
+            messages_box.Size = new Size(158, 199);
+            messages_box.TabIndex = 10;
+            messages_box.SelectedIndexChanged += messages_box_SelectedIndexChanged;
+            // 
+            // messageContentTextBox
+            // 
+            messageContentTextBox.Location = new Point(174, 48);
+            messageContentTextBox.Name = "messageContentTextBox";
+            messageContentTextBox.Size = new Size(647, 326);
+            messageContentTextBox.TabIndex = 11;
+            messageContentTextBox.Text = "";
+            messageContentTextBox.TextChanged += messageContentTextBox_TextChanged;
+            // 
+            // moveButton
+            // 
+            moveButton.Location = new Point(174, 4);
+            moveButton.Name = "moveButton";
+            moveButton.Size = new Size(77, 36);
+            moveButton.TabIndex = 12;
+            moveButton.Text = "MoveMail";
+            moveButton.UseVisualStyleBackColor = true;
+            moveButton.Click += moveButton_Click;
+            // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(15F, 37F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1810, 952);
+            ClientSize = new Size(845, 386);
+            Controls.Add(moveButton);
+            Controls.Add(messageContentTextBox);
+            Controls.Add(messages_box);
+            Controls.Add(folders_Box);
             Controls.Add(sign_out);
             Controls.Add(SearchBar);
-            Controls.Add(label2);
-            Controls.Add(InboxBT1);
+            Controls.Add(ComposeBT);
+            Margin = new Padding(1);
             Name = "Form2";
             Text = "Form2";
             FormClosed += Form2_FormClosed;
@@ -95,10 +132,13 @@
 
         #endregion
 
-        private Button InboxBT1;
-        private Label label2;
+        private Button ComposeBT;
         private TextBox SearchBar;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button sign_out;
+        private ListBox folders_Box;
+        private ListBox messages_box;
+        private RichTextBox messageContentTextBox;
+        private Button moveButton;
     }
 }

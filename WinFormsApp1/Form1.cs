@@ -11,14 +11,35 @@ namespace WinFormsApp1
         {
             InitializeComponent();
         }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
 
+        }
         private void loginBT_Click(object sender, EventArgs e)
         {
             try
             {
                 // Retrieve user input from the textboxes
                 string userEmail = textBoxEmail.Text;
+                Properties.Settings.Default.current_username = userEmail;
                 string userPassword = textBoxPassword.Text;
+                Properties.Settings.Default.current_password = userPassword;
+
+
+                if (string.IsNullOrWhiteSpace(userEmail) || !IsValidEmail(userEmail))
+                {
+                    MessageBox.Show("Please enter a valid recipient email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Check if both email and password are provided
                 if (string.IsNullOrWhiteSpace(userEmail) || string.IsNullOrWhiteSpace(userPassword))
@@ -39,10 +60,11 @@ namespace WinFormsApp1
                     inbox.Show();
                 }
             }
-            catch (AuthenticationException)
+
+            catch (AuthenticationException authEx)
             {
                 // Authentication failed due to incorrect password
-                MessageBox.Show("Authentication failed. The password is incorrect.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Authentication failed. The password is incorrect. Error: {authEx.Message}", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (InvalidOperationException ex)
             {

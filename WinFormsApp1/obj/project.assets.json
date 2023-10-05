@@ -354,7 +354,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "MailKit >= 4.2.0"
+      "MailKit >= 4.2.0",
+      "MimeKit >= 4.2.0"
     ]
   },
   "packageFolders": {
@@ -403,6 +404,10 @@
         "targetAlias": "net6.0-windows",
         "dependencies": {
           "MailKit": {
+            "target": "Package",
+            "version": "[4.2.0, )"
+          },
+          "MimeKit": {
             "target": "Package",
             "version": "[4.2.0, )"
           }

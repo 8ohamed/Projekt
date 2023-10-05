@@ -77,3 +77,4 @@ C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\refint\WinF
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.pdb
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
+C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.FolderSelectionDialog.resources

@@ -40,9 +40,10 @@
             // 
             // loginBT
             // 
-            loginBT.Location = new Point(785, 711);
+            loginBT.Location = new Point(366, 288);
+            loginBT.Margin = new Padding(1, 1, 1, 1);
             loginBT.Name = "loginBT";
-            loginBT.Size = new Size(169, 52);
+            loginBT.Size = new Size(79, 21);
             loginBT.TabIndex = 0;
             loginBT.Text = "login";
             loginBT.UseVisualStyleBackColor = true;
@@ -50,27 +51,30 @@
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(670, 526);
+            textBoxEmail.Location = new Point(313, 213);
+            textBoxEmail.Margin = new Padding(1, 1, 1, 1);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(436, 43);
+            textBoxEmail.Size = new Size(206, 23);
             textBoxEmail.TabIndex = 1;
             textBoxEmail.TextChanged += textBox1_TextChanged;
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(670, 598);
+            textBoxPassword.Location = new Point(313, 242);
+            textBoxPassword.Margin = new Padding(1, 1, 1, 1);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '*';
-            textBoxPassword.Size = new Size(436, 43);
+            textBoxPassword.Size = new Size(206, 23);
             textBoxPassword.TabIndex = 2;
             // 
             // Emailabel
             // 
             Emailabel.AutoSize = true;
             Emailabel.BackColor = SystemColors.ButtonHighlight;
-            Emailabel.Location = new Point(472, 526);
+            Emailabel.Location = new Point(220, 213);
+            Emailabel.Margin = new Padding(1, 0, 1, 0);
             Emailabel.Name = "Emailabel";
-            Emailabel.Size = new Size(165, 37);
+            Emailabel.Size = new Size(72, 15);
             Emailabel.TabIndex = 3;
             Emailabel.Text = "E-Mail adres";
             Emailabel.Click += label1_Click;
@@ -79,33 +83,36 @@
             // 
             passwordlabel.AutoSize = true;
             passwordlabel.BackColor = SystemColors.ControlLightLight;
-            passwordlabel.Location = new Point(472, 598);
+            passwordlabel.Location = new Point(220, 242);
+            passwordlabel.Margin = new Padding(1, 0, 1, 0);
             passwordlabel.Name = "passwordlabel";
-            passwordlabel.Size = new Size(128, 37);
+            passwordlabel.Size = new Size(57, 15);
             passwordlabel.TabIndex = 4;
             passwordlabel.Text = "Password";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(559, 93);
+            pictureBox1.Location = new Point(261, 38);
+            pictureBox1.Margin = new Padding(1, 1, 1, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(614, 331);
+            pictureBox1.Size = new Size(287, 134);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(15F, 37F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1674, 937);
+            ClientSize = new Size(781, 380);
             Controls.Add(pictureBox1);
             Controls.Add(passwordlabel);
             Controls.Add(Emailabel);
             Controls.Add(textBoxPassword);
             Controls.Add(textBoxEmail);
             Controls.Add(loginBT);
+            Margin = new Padding(1, 1, 1, 1);
             Name = "Form1";
             Text = "LoginPage";
             FormClosed += Form1_FormClosed;

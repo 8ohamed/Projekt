@@ -48,6 +48,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[4.2.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.2.0, )"
             }
           },
           "imports": [

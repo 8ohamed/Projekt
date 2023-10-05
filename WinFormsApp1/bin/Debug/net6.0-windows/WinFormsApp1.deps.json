@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "WinFormsApp1/1.0.0": {
         "dependencies": {
-          "MailKit": "4.2.0"
+          "MailKit": "4.2.0",
+          "MimeKit": "4.2.0"
         },
         "runtime": {
           "WinFormsApp1.dll": {}
