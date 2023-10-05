@@ -60,7 +60,10 @@ namespace WinFormsApp1
         {
 
         }
-
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0); // To shut the environment when clicking on the X
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 

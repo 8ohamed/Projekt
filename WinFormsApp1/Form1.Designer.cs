@@ -108,6 +108,7 @@
             Controls.Add(loginBT);
             Name = "Form1";
             Text = "LoginPage";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
