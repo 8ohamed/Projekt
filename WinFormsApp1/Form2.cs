@@ -27,17 +27,20 @@ namespace WinFormsApp1
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             sign_out.Click += sign_out_Click;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-            // Disable the "Move" button initially
-            moveButton.Enabled = false;
+            // Define columns for the MEssages DataGridView
+            DataGridViewTextBoxColumn senderColumn = new DataGridViewTextBoxColumn();
+            senderColumn.HeaderText = "Sender";
+            senderColumn.Name = "Sender"; // This should match the column name you use in MEssages_CellContentClick
+            messag.Columns.Add(senderColumn);
+
+            DataGridViewTextBoxColumn subjectColumn = new DataGridViewTextBoxColumn();
+            subjectColumn.HeaderText = "Subject";
+            subjectColumn.Name = "Subject"; // This should match the column name you use in MEssages_CellContentClick
+            messag.Columns.Add(subjectColumn);
+
         }
 
-        private void InboxBT1_Click(object sender, EventArgs e)
-        {
-            Form3 Compose = new Form3();
-            this.Hide();
-            Compose.Show();
 
-        }
 
 
         private void Form2_Load(object sender, EventArgs e)
@@ -119,51 +122,75 @@ namespace WinFormsApp1
             }
         }
 
+        private void MEssages_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < messag.Rows.Count)
+            {
+                try
+                {
+                    string selectedFolderName = folders_Box.SelectedItem as string;
+
+                    using (var client = new ImapClient())
+                    {
+                        string useremail = Properties.Settings.Default.current_username;
+                        string userpassword = Properties.Settings.Default.current_password;
+
+                        client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                        client.Authenticate(useremail, userpassword);
+
+                        var folder = client.GetFolder(selectedFolderName);
+                        folder.Open(FolderAccess.ReadOnly);
+
+                        var message = folder.GetMessage(e.RowIndex);
+
+                        string messageContent = message.TextBody; // Retrieve email content
+                        Properties.Settings.Default.current_message = messageContent;
+
+                        // Pass the message content to the MessageViewerForm
+                        MessageViewerForm viewerForm = new MessageViewerForm(messageContent, message);
+                        viewerForm.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
 
         private void RetrieveMessages(string folderName)
         {
             try
             {
-                // to retrieve the username and password
                 string useremail = Properties.Settings.Default.current_username;
                 string userpassword = Properties.Settings.Default.current_password;
 
                 using (var client = new ImapClient())
                 {
-                    // Connect to the IMAP server (e.g., Gmail)
                     client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-
-                    // Authenticate with the email account
                     client.Authenticate(useremail, userpassword);
 
-                    // Get the selected folder
                     var folder = client.GetFolder(folderName);
 
                     if (folder != null)
                     {
-                        // Open the folder in read-write mode
                         folder.Open(FolderAccess.ReadOnly);
-
-                        // Retrieve messages
                         var messages = folder.Fetch(0, -1, MessageSummaryItems.UniqueId | MessageSummaryItems.Envelope);
 
                         foreach (var message in messages)
                         {
-                            if (message.Envelope.Subject != null)
-                            {
-                                messages_box.Items.Add(message.Envelope.Subject);
-                            }
-                            else
-                            {
-                                messages_box.Items.Add("<No Subject>");
-                            }
+                            messag.Rows.Add(
+                                     message.Envelope.From.ToString(),
+                                     message.Envelope.Subject,
+                                     message.Envelope.Date
+                                     );
                         }
 
-                        // Close the folder when done
                         folder.Close();
                     }
 
-                    // Disconnect from the server when done
                     client.Disconnect(true);
                 }
             }
@@ -179,14 +206,17 @@ namespace WinFormsApp1
 
 
 
+
+
+
+
         private void folders_Box_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentFolder = folders_Box.SelectedItem as string; // Set the currentFolder when a folder is selected
             RetrieveMessages(currentFolder);
 
             // Clear the messages_box when a new folder is selected
-            messages_box.Items.Clear();
-
+            messag.Rows.Clear();
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string selectedFolderName = folders_Box.SelectedItem as string;
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
@@ -197,123 +227,59 @@ namespace WinFormsApp1
                 // Retrieve messages from the selected folder
                 RetrieveMessages(selectedFolderName);
             }
+
         }
 
 
-        private void messages_box_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private MimeMessage originalMessage; // Field to store the original message
+
+        private void messag_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (messages_box.SelectedItem is MessageSummary selectedMessage)
+            if (e.RowIndex >= 0 && e.RowIndex < messag.Rows.Count)
             {
-                var selectedEmailId = selectedMessage.UniqueId;
-                // Now you have the selectedEmailId, and you can use it to move the email.
-                
-            }
-            int selectedIndex = messages_box.SelectedIndex;
-
-            if (selectedIndex >= 0)
-            {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                string selectedFolderName = folders_Box.SelectedItem as string;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-
-                using (var client = new ImapClient())
+                try
                 {
-                    string useremail = Properties.Settings.Default.current_username;
-                    string userpassword = Properties.Settings.Default.current_password;
+                    string selectedFolderName = folders_Box.SelectedItem as string;
 
-                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                    client.Authenticate(useremail, userpassword);
-
-                    var folder = client.GetFolder(selectedFolderName);
-                    folder.Open(FolderAccess.ReadOnly);
-
-                    var message = folder.GetMessage(selectedIndex);
-                    // Enable the "Move" button since an email is selected
-                    moveButton.Enabled = true;
-                    // Display the message content in the messageContentTextBox
-                    messageContentTextBox.Text = message.TextBody; // You can customize this based on the message format (HTML, plain text, etc.)
-                }
-            }
-            else
-            {
-                // If no message is selected, clear the messageContentTextBox
-                messageContentTextBox.Clear();
-                // Enable the "Move" button since an email is selected
-                moveButton.Enabled = false;
-            }
-        }
-
-
-
-        private void messageContentTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-        private void MoveEmailToFolder(UniqueId emailId, string sourceFolder, string destinationFolder)
-        {
-            if (emailId == null || string.IsNullOrEmpty(sourceFolder) || string.IsNullOrEmpty(destinationFolder))
-            {
-                MessageBox.Show("Please select a folder and one or more emails to move.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                using (var client = new ImapClient())
-                {
-                    string useremail = Properties.Settings.Default.current_username;
-                    string userpassword = Properties.Settings.Default.current_password;
-
-                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                    client.Authenticate(useremail, userpassword);
-
-                    // Get the source and destination folders
-                    var source = client.GetFolder(sourceFolder);
-                    var destination = client.GetFolder(destinationFolder);
-
-                    // Move the email with the specified UID to the target folder
-                    source.MoveTo(emailId, destination);
-
-                    // Refresh the list of messages in the current folder
-                    RetrieveMessages(currentFolder);
-                    MessageBox.Show("Email moved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
-
-
-
-
-
-        private void moveButton_Click(object sender, EventArgs e)
-        {
-            using (var folderSelectionDialog = new FolderSelectionDialog(folderNames))
-            {
-                if (folderSelectionDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFolder = folderSelectionDialog.SelectedFolderName;
-
-                    if (messages_box.SelectedItem is MessageSummary selectedMessage)
+                    using (var client = new ImapClient())
                     {
-                        var selectedEmailId = selectedMessage.UniqueId;
+                        string useremail = Properties.Settings.Default.current_username;
+                        string userpassword = Properties.Settings.Default.current_password;
 
-                        // Move the email to the selected folder
-                        MoveEmailToFolder(selectedEmailId, currentFolder, selectedFolder);
+                        client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                        client.Authenticate(useremail, userpassword);
+
+                        var folder = client.GetFolder(selectedFolderName);
+                        folder.Open(FolderAccess.ReadOnly);
+
+                        var message = folder.GetMessage(e.RowIndex);
+                        string messageContent = message.TextBody; // Retrieve email content
+
+                        // Store the original message in the field, in case of reply
+                        originalMessage = message;
+                        // Pass the message content to the MessageViewerForm
+                        MessageViewerForm viewerForm = new MessageViewerForm(messageContent, message);
+                        viewerForm.ShowDialog();
+
+                        // Display the sender and subject in DataGridView
+                        messag["Sender", e.RowIndex].Value = message.From.ToString(); // Sender
+                        messag["Subject", e.RowIndex].Value = message.Subject; // Subject
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private void composBT_Click(object sender, EventArgs e)
+        {
+            Form3 Compose = new Form3();
+            this.Hide();
+            Compose.Show();
         }
     }
 }

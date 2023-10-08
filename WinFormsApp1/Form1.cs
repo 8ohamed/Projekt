@@ -95,5 +95,10 @@ namespace WinFormsApp1
         {
 
         }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,40 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ComposeBT = new Button();
             SearchBar = new TextBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             sign_out = new Button();
             folders_Box = new ListBox();
-            messages_box = new ListBox();
-            messageContentTextBox = new RichTextBox();
-            moveButton = new Button();
+            delete1 = new Button();
+            movetospam = new Button();
+            markimpo = new Button();
+            markReadUnRead = new Button();
+            messag = new DataGridView();
+            Sender = new DataGridViewTextBoxColumn();
+            subject = new DataGridViewTextBoxColumn();
+            composBT = new Button();
+            ((System.ComponentModel.ISupportInitialize)messag).BeginInit();
             SuspendLayout();
-            // 
-            // ComposeBT
-            // 
-            ComposeBT.Location = new Point(675, 5);
-            ComposeBT.Margin = new Padding(1);
-            ComposeBT.Name = "ComposeBT";
-            ComposeBT.Size = new Size(79, 35);
-            ComposeBT.TabIndex = 0;
-            ComposeBT.Text = "Compose";
-            ComposeBT.UseVisualStyleBackColor = true;
-            ComposeBT.Click += InboxBT1_Click;
             // 
             // SearchBar
             // 
             SearchBar.Cursor = Cursors.Hand;
-            SearchBar.Location = new Point(351, 13);
+            SearchBar.Location = new Point(175, 13);
             SearchBar.Margin = new Padding(1);
             SearchBar.Name = "SearchBar";
             SearchBar.PlaceholderText = "Search ....";
-            SearchBar.Size = new Size(296, 23);
+            SearchBar.Size = new Size(302, 23);
             SearchBar.TabIndex = 7;
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(756, 6);
+            sign_out.Location = new Point(997, 13);
             sign_out.Margin = new Padding(1);
             sign_out.Name = "sign_out";
             sign_out.Size = new Size(79, 34);
@@ -74,71 +68,119 @@
             // 
             folders_Box.FormattingEnabled = true;
             folders_Box.ItemHeight = 15;
-            folders_Box.Location = new Point(10, 12);
+            folders_Box.Location = new Point(11, 15);
             folders_Box.Name = "folders_Box";
-            folders_Box.Size = new Size(160, 154);
+            folders_Box.Size = new Size(160, 514);
             folders_Box.TabIndex = 9;
             folders_Box.SelectedIndexChanged += folders_Box_SelectedIndexChanged;
             // 
-            // messages_box
+            // delete1
             // 
-            messages_box.FormattingEnabled = true;
-            messages_box.ItemHeight = 15;
-            messages_box.Location = new Point(10, 175);
-            messages_box.Name = "messages_box";
-            messages_box.Size = new Size(158, 199);
-            messages_box.TabIndex = 10;
-            messages_box.SelectedIndexChanged += messages_box_SelectedIndexChanged;
+            delete1.Location = new Point(807, 7);
+            delete1.Name = "delete1";
+            delete1.Size = new Size(92, 47);
+            delete1.TabIndex = 14;
+            delete1.Text = "Delete";
+            delete1.UseVisualStyleBackColor = true;
             // 
-            // messageContentTextBox
+            // movetospam
             // 
-            messageContentTextBox.Location = new Point(174, 48);
-            messageContentTextBox.Name = "messageContentTextBox";
-            messageContentTextBox.Size = new Size(647, 326);
-            messageContentTextBox.TabIndex = 11;
-            messageContentTextBox.Text = "";
-            messageContentTextBox.TextChanged += messageContentTextBox_TextChanged;
+            movetospam.Location = new Point(709, 7);
+            movetospam.Name = "movetospam";
+            movetospam.Size = new Size(92, 47);
+            movetospam.TabIndex = 15;
+            movetospam.Text = "MoveToSpam";
+            movetospam.UseVisualStyleBackColor = true;
             // 
-            // moveButton
+            // markimpo
             // 
-            moveButton.Location = new Point(174, 4);
-            moveButton.Name = "moveButton";
-            moveButton.Size = new Size(77, 36);
-            moveButton.TabIndex = 12;
-            moveButton.Text = "MoveMail";
-            moveButton.UseVisualStyleBackColor = true;
-            moveButton.Click += moveButton_Click;
+            markimpo.Location = new Point(611, 7);
+            markimpo.Name = "markimpo";
+            markimpo.Size = new Size(92, 47);
+            markimpo.TabIndex = 16;
+            markimpo.Text = "Mark Important";
+            markimpo.UseVisualStyleBackColor = true;
+            // 
+            // markReadUnRead
+            // 
+            markReadUnRead.Location = new Point(513, 7);
+            markReadUnRead.Name = "markReadUnRead";
+            markReadUnRead.Size = new Size(92, 47);
+            markReadUnRead.TabIndex = 17;
+            markReadUnRead.Text = "Mark read/unread";
+            markReadUnRead.UseVisualStyleBackColor = true;
+            // 
+            // messag
+            // 
+            messag.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            messag.Columns.AddRange(new DataGridViewColumn[] { Sender, subject });
+            messag.Location = new Point(195, 80);
+            messag.Name = "messag";
+            messag.RowTemplate.Height = 25;
+            messag.Size = new Size(840, 405);
+            messag.TabIndex = 18;
+            messag.CellContentClick += messag_CellContentClick;
+            // 
+            // Sender
+            // 
+            Sender.HeaderText = "The sender";
+            Sender.Name = "Sender";
+            Sender.ReadOnly = true;
+            // 
+            // subject
+            // 
+            subject.HeaderText = "The subject";
+            subject.Name = "subject";
+            subject.ReadOnly = true;
+            // 
+            // composBT
+            // 
+            composBT.Location = new Point(903, 7);
+            composBT.Margin = new Padding(1);
+            composBT.Name = "composBT";
+            composBT.Size = new Size(92, 47);
+            composBT.TabIndex = 19;
+            composBT.Text = "Compose";
+            composBT.UseVisualStyleBackColor = true;
+            composBT.Click += composBT_Click;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 386);
-            Controls.Add(moveButton);
-            Controls.Add(messageContentTextBox);
-            Controls.Add(messages_box);
+            AutoSize = true;
+            ClientSize = new Size(1082, 534);
+            Controls.Add(composBT);
+            Controls.Add(messag);
+            Controls.Add(markReadUnRead);
+            Controls.Add(markimpo);
+            Controls.Add(movetospam);
+            Controls.Add(delete1);
             Controls.Add(folders_Box);
             Controls.Add(sign_out);
             Controls.Add(SearchBar);
-            Controls.Add(ComposeBT);
             Margin = new Padding(1);
             Name = "Form2";
             Text = "Form2";
             FormClosed += Form2_FormClosed;
             Load += Form2_Load;
+            ((System.ComponentModel.ISupportInitialize)messag).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button ComposeBT;
         private TextBox SearchBar;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button sign_out;
         private ListBox folders_Box;
-        private ListBox messages_box;
-        private RichTextBox messageContentTextBox;
-        private Button moveButton;
+        private Button delete1;
+        private Button movetospam;
+        private Button markimpo;
+        private Button markReadUnRead;
+        private DataGridView messag;
+        private DataGridViewTextBoxColumn Sender;
+        private DataGridViewTextBoxColumn subject;
+        private Button composBT;
     }
 }

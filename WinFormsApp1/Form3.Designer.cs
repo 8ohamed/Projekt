@@ -43,7 +43,7 @@
             // HomeFcompose
             // 
             HomeFcompose.Location = new Point(1, 0);
-            HomeFcompose.Margin = new Padding(1, 1, 1, 1);
+            HomeFcompose.Margin = new Padding(1);
             HomeFcompose.Name = "HomeFcompose";
             HomeFcompose.Size = new Size(79, 43);
             HomeFcompose.TabIndex = 0;
@@ -67,7 +67,7 @@
             // receiverAdress
             // 
             receiverAdress.Location = new Point(175, 45);
-            receiverAdress.Margin = new Padding(1, 1, 1, 1);
+            receiverAdress.Margin = new Padding(1);
             receiverAdress.Name = "receiverAdress";
             receiverAdress.Size = new Size(458, 23);
             receiverAdress.TabIndex = 2;
@@ -76,7 +76,7 @@
             // Subjectbox
             // 
             Subjectbox.Location = new Point(175, 74);
-            Subjectbox.Margin = new Padding(1, 1, 1, 1);
+            Subjectbox.Margin = new Padding(1);
             Subjectbox.Name = "Subjectbox";
             Subjectbox.Size = new Size(151, 23);
             Subjectbox.TabIndex = 3;
@@ -85,9 +85,9 @@
             // 
             Messagebox.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
             Messagebox.Location = new Point(142, 101);
-            Messagebox.Margin = new Padding(1, 1, 1, 1);
+            Messagebox.Margin = new Padding(1);
             Messagebox.Name = "Messagebox";
-            Messagebox.Size = new Size(697, 270);
+            Messagebox.Size = new Size(714, 308);
             Messagebox.TabIndex = 5;
             Messagebox.Text = "";
             Messagebox.TextChanged += Messagebox_TextChanged;
@@ -125,10 +125,10 @@
             // 
             // SendBT
             // 
-            SendBT.Location = new Point(855, 343);
-            SendBT.Margin = new Padding(1, 1, 1, 1);
+            SendBT.Location = new Point(769, 35);
+            SendBT.Margin = new Padding(1);
             SendBT.Name = "SendBT";
-            SendBT.Size = new Size(73, 36);
+            SendBT.Size = new Size(87, 40);
             SendBT.TabIndex = 9;
             SendBT.Text = "Send";
             SendBT.UseVisualStyleBackColor = true;
@@ -136,10 +136,10 @@
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(6, 358);
-            sign_out.Margin = new Padding(1, 1, 1, 1);
+            sign_out.Location = new Point(6, 350);
+            sign_out.Margin = new Padding(1);
             sign_out.Name = "sign_out";
-            sign_out.Size = new Size(102, 21);
+            sign_out.Size = new Size(102, 29);
             sign_out.TabIndex = 10;
             sign_out.Text = "Sign Out";
             sign_out.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(898, 400);
+            ClientSize = new Size(875, 418);
             Controls.Add(sign_out);
             Controls.Add(SendBT);
             Controls.Add(label4);
@@ -160,7 +160,7 @@
             Controls.Add(receiverAdress);
             Controls.Add(label1);
             Controls.Add(HomeFcompose);
-            Margin = new Padding(1, 1, 1, 1);
+            Margin = new Padding(1);
             Name = "Form3";
             Text = "'";
             FormClosed += Form3_FormClosed;

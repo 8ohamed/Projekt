@@ -41,7 +41,7 @@
             // loginBT
             // 
             loginBT.Location = new Point(366, 288);
-            loginBT.Margin = new Padding(1, 1, 1, 1);
+            loginBT.Margin = new Padding(1);
             loginBT.Name = "loginBT";
             loginBT.Size = new Size(79, 21);
             loginBT.TabIndex = 0;
@@ -52,7 +52,7 @@
             // textBoxEmail
             // 
             textBoxEmail.Location = new Point(313, 213);
-            textBoxEmail.Margin = new Padding(1, 1, 1, 1);
+            textBoxEmail.Margin = new Padding(1);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(206, 23);
             textBoxEmail.TabIndex = 1;
@@ -61,11 +61,12 @@
             // textBoxPassword
             // 
             textBoxPassword.Location = new Point(313, 242);
-            textBoxPassword.Margin = new Padding(1, 1, 1, 1);
+            textBoxPassword.Margin = new Padding(1);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '*';
             textBoxPassword.Size = new Size(206, 23);
             textBoxPassword.TabIndex = 2;
+            textBoxPassword.TextChanged += textBoxPassword_TextChanged;
             // 
             // Emailabel
             // 
@@ -94,7 +95,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(261, 38);
-            pictureBox1.Margin = new Padding(1, 1, 1, 1);
+            pictureBox1.Margin = new Padding(1);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(287, 134);
             pictureBox1.TabIndex = 5;
@@ -112,7 +113,7 @@
             Controls.Add(textBoxPassword);
             Controls.Add(textBoxEmail);
             Controls.Add(loginBT);
-            Margin = new Padding(1, 1, 1, 1);
+            Margin = new Padding(1);
             Name = "Form1";
             Text = "LoginPage";
             FormClosed += Form1_FormClosed;

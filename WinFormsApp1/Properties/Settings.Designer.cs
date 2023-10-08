@@ -46,5 +46,17 @@ namespace WinFormsApp1.Properties {
                 this["current_password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string current_message {
+            get {
+                return ((string)(this["current_message"]));
+            }
+            set {
+                this["current_message"] = value;
+            }
+        }
     }
 }
