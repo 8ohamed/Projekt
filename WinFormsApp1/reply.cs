@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MimeKit;
 using MailKit.Net.Imap;
 using MailKit.Security;
 using MailKit;
+using System.Net.Mail;
 
 namespace WinFormsApp1
 {
@@ -26,7 +26,7 @@ namespace WinFormsApp1
             this.emailContent = emailContent; // Assign the email content
 
         }
-  
+
 
         private void reply_Load(object sender, EventArgs e)
         {
@@ -36,31 +36,19 @@ namespace WinFormsApp1
         string useremail = Properties.Settings.Default.current_username;
         string userpassword = Properties.Settings.Default.current_password;
 
-        private MimeMessage GetOriginalMessage()
-        {
-            return originalMessage;
-        }
+
 
         private void sendreplyBT_Click(object sender, EventArgs e)
         {
             try
             {
-                // Create a new MimeMessage for the reply
-                var replyMessage = new MimeMessage();
-
-                replyMessage.From.Add(new MailboxAddress("Your Name", useremail)); // Replace "Your Name" with your name or organization
-
-
-               // replyMessage.To.Add(new MailboxAddress("reciever", originalMessage.Sender));
-                // Create a MailboxAddress for the "To" address
-               
+                var replyMessage = new MimeMessage(originalMessage.To[0],originalMessage.From[0]);
 
                 // Add "Re: " to the subject
                 if (!originalMessage.Subject.StartsWith("Re:", StringComparison.OrdinalIgnoreCase))
                     replyMessage.Subject = "Re:" + originalMessage.Subject;
                 else
                     replyMessage.Subject = originalMessage.Subject;
-                    
 
 
                 replyMessage.Body = new TextPart("plain")
@@ -68,22 +56,37 @@ namespace WinFormsApp1
                     Text = replyBox.Text // Set the message body from your replyBox
                 };
 
+
+
+                // Create a new MimeMessage for the reply
+
+                replyMessage.From.Add(new MailboxAddress("Your Name", useremail)); // Replace "Your Name" with your name or organization
+
+
+
+
+               
+            //        var replyTo = new MailboxAddress(Osender.Name, Osender.Address);
+              //      replyMessage.To.Add(replyTo);
+                
+
+
                 // Connect to the IMAP server (e.g., Gmail)
                 using (var client = new ImapClient())
                 {
-
+              
                     client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-
+              
                     // Authenticate with your email and password
                     client.Authenticate(useremail, userpassword);
-
+              
                     // Open the inbox folder
                     var inbox = client.Inbox;
                     inbox.Open(FolderAccess.ReadWrite);
-
+              
                     // Append the reply message to the inbox
                     inbox.Append(replyMessage);
-
+              
                     // Disconnect from the server
                     client.Disconnect(true);
                 }

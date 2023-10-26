@@ -24,6 +24,7 @@ namespace WinFormsApp1
         public Form2()
         {
             InitializeComponent();
+
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             sign_out.Click += sign_out_Click;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
@@ -74,6 +75,7 @@ namespace WinFormsApp1
         {
             try
             {
+                messag.Rows.Clear();
                 // Clear the existing items in the folderNames list
                 folderNames.Clear();
 
@@ -164,6 +166,7 @@ namespace WinFormsApp1
         {
             try
             {
+                messag.Rows.Clear();
                 string useremail = Properties.Settings.Default.current_username;
                 string userpassword = Properties.Settings.Default.current_password;
 
@@ -207,6 +210,16 @@ namespace WinFormsApp1
 
 
 
+        private void ShowPleaseWaitForMessages()
+        {
+            // Show the "Please Wait" message box
+            MessageBox.Show("Please wait while retrieving messages...", "Loading", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            string selectedFolderName = folders_Box.SelectedItem as string;
+
+            // Retrieve messages
+            RetrieveMessages(selectedFolderName);
+        }
 
 
 
@@ -224,6 +237,8 @@ namespace WinFormsApp1
             // Check if a folder is selected
             if (!string.IsNullOrEmpty(selectedFolderName))
             {
+                // Show "Please Wait" message and retrieve messages
+                ShowPleaseWaitForMessages();
                 // Retrieve messages from the selected folder
                 RetrieveMessages(selectedFolderName);
             }
@@ -280,6 +295,114 @@ namespace WinFormsApp1
             Form3 Compose = new Form3();
             this.Hide();
             Compose.Show();
+        }
+
+        private void delete1_Click(object sender, EventArgs e)
+        {
+            if (messag.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an email to move to Trash.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int rowIndex = messag.SelectedRows[0].Index;
+
+            try
+            {
+                string selectedFolderName = folders_Box.SelectedItem as string;
+                using (var client = new ImapClient())
+                {
+                    string useremail = Properties.Settings.Default.current_username;
+                    string userpassword = Properties.Settings.Default.current_password;
+
+                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                    client.Authenticate(useremail, userpassword);
+
+                    var folder = client.GetFolder(selectedFolderName);
+                    folder.Open(FolderAccess.ReadWrite);
+
+                    var uids = folder.Search(SearchQuery.All);
+                    if (rowIndex < uids.Count)
+                    {
+                        var emailUniqueId = uids[rowIndex];
+                        folder.AddFlags(emailUniqueId, MessageFlags.Deleted, true); // Mark for deletion
+                        folder.Expunge(new UniqueId[] { emailUniqueId }); // Permanently delete marked email
+                        messag.Rows.RemoveAt(rowIndex); // Remove from DataGridView
+                    }
+
+                    folder.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void movetospam_Click(object sender, EventArgs e)
+        {
+            if (messag.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an email to mark as spam.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int rowIndex = messag.SelectedRows[0].Index;
+
+            try
+            {
+                string selectedFolderName = folders_Box.SelectedItem as string;
+                using (var client = new ImapClient())
+                {
+                    string useremail = Properties.Settings.Default.current_username;
+                    string userpassword = Properties.Settings.Default.current_password;
+
+                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                    client.Authenticate(useremail, userpassword);
+
+                    var folder = client.GetFolder(selectedFolderName);
+                    folder.Open(FolderAccess.ReadWrite);
+
+                    var uids = folder.Search(SearchQuery.All);
+                    if (rowIndex < uids.Count)
+                    {
+                        var emailUniqueId = uids[rowIndex];
+
+                        // Mark the email as spam by adding the \Flag \Spam flags
+                        folder.AddFlags(emailUniqueId, MessageFlags.Flagged, true);
+                        folder.AddFlags(emailUniqueId, MessageFlags.Seen, true);
+
+                        // Refresh the messages
+                        messag.Rows.Clear();
+                        RetrieveMessages(selectedFolderName);
+
+                        // Optionally move the email to the Spam folder
+                        string spamFolderName = "[Gmail]/Spam";
+                        var spamFolder = client.GetFolder(spamFolderName);
+                        if (spamFolder != null)
+                        {
+                            folder.MoveTo(new UniqueId[] { emailUniqueId }, spamFolder);
+                        }
+                    }
+
+                    folder.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+
+
+
+        private void markReadUnRead_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

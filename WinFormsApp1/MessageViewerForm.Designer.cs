@@ -22,6 +22,7 @@
             closeButton = new Button();
             ReadMessage = new RichTextBox();
             replyBT = new Button();
+            forwardBT = new Button();
             SuspendLayout();
             // 
             // senderLabel
@@ -81,11 +82,22 @@
             replyBT.UseVisualStyleBackColor = true;
             replyBT.Click += replyBT_Click;
             // 
+            // forwardBT
+            // 
+            forwardBT.Location = new Point(749, 110);
+            forwardBT.Name = "forwardBT";
+            forwardBT.Size = new Size(112, 44);
+            forwardBT.TabIndex = 4;
+            forwardBT.Text = "Forward";
+            forwardBT.UseVisualStyleBackColor = true;
+            forwardBT.Click += forwardBT_Click;
+            // 
             // MessageViewerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(869, 423);
+            Controls.Add(forwardBT);
             Controls.Add(replyBT);
             Controls.Add(ReadMessage);
             Name = "MessageViewerForm";
@@ -95,5 +107,6 @@
 
         private RichTextBox ReadMessage;
         private Button replyBT;
+        private Button forwardBT;
     }
 }

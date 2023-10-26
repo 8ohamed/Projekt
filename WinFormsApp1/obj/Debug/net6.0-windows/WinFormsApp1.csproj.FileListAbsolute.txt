@@ -79,3 +79,4 @@ C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.MessageViewerForm.resources
 C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.reply.resources
+C:\Users\derki\Desktop\Projekt\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.forward.resources

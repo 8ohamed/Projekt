@@ -82,6 +82,7 @@
             delete1.TabIndex = 14;
             delete1.Text = "Delete";
             delete1.UseVisualStyleBackColor = true;
+            delete1.Click += delete1_Click;
             // 
             // movetospam
             // 
@@ -91,6 +92,7 @@
             movetospam.TabIndex = 15;
             movetospam.Text = "MoveToSpam";
             movetospam.UseVisualStyleBackColor = true;
+            movetospam.Click += movetospam_Click;
             // 
             // markimpo
             // 
@@ -109,6 +111,7 @@
             markReadUnRead.TabIndex = 17;
             markReadUnRead.Text = "Mark read/unread";
             markReadUnRead.UseVisualStyleBackColor = true;
+            markReadUnRead.Click += markReadUnRead_Click;
             // 
             // messag
             // 

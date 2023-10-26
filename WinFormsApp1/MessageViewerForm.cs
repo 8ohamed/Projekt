@@ -30,7 +30,7 @@ namespace WinFormsApp1
             Console.WriteLine("MessageViewerForm_Load called");
             // Set the RichTextBox text to display the email content when the form loads
             ReadMessage.Text = emailContent;
-
+           
         }
 
 
@@ -48,10 +48,16 @@ namespace WinFormsApp1
             reply replyForm = new reply(originalMessage, emailContent);
             // Set the emailContent property
 
-    
+
 
             // Show the ReplyForm to allow the user to compose a reply
             replyForm.ShowDialog();
+        }
+
+        private void forwardBT_Click(object sender, EventArgs e)
+        {
+            forward forwardForm = new forward(originalMessage, emailContent);
+            forwardForm.ShowDialog();
         }
     }
 }
