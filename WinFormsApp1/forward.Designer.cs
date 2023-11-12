@@ -83,6 +83,7 @@
             Controls.Add(forwardbox);
             Name = "forward";
             Text = "forward";
+            FormClosed += forward_FormClosed;
             Load += forward_Load;
             ResumeLayout(false);
             PerformLayout();

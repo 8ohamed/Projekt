@@ -42,10 +42,10 @@
             // 
             // HomeFcompose
             // 
-            HomeFcompose.Location = new Point(1, 0);
+            HomeFcompose.Location = new Point(10, 10);
             HomeFcompose.Margin = new Padding(1);
             HomeFcompose.Name = "HomeFcompose";
-            HomeFcompose.Size = new Size(79, 43);
+            HomeFcompose.Size = new Size(113, 63);
             HomeFcompose.TabIndex = 0;
             HomeFcompose.Text = "Inbox";
             HomeFcompose.UseVisualStyleBackColor = true;
@@ -66,7 +66,7 @@
             // 
             // receiverAdress
             // 
-            receiverAdress.Location = new Point(175, 45);
+            receiverAdress.Location = new Point(205, 47);
             receiverAdress.Margin = new Padding(1);
             receiverAdress.Name = "receiverAdress";
             receiverAdress.Size = new Size(458, 23);
@@ -75,7 +75,7 @@
             // 
             // Subjectbox
             // 
-            Subjectbox.Location = new Point(175, 74);
+            Subjectbox.Location = new Point(205, 76);
             Subjectbox.Margin = new Padding(1);
             Subjectbox.Name = "Subjectbox";
             Subjectbox.Size = new Size(151, 23);
@@ -87,7 +87,7 @@
             Messagebox.Location = new Point(142, 101);
             Messagebox.Margin = new Padding(1);
             Messagebox.Name = "Messagebox";
-            Messagebox.Size = new Size(714, 308);
+            Messagebox.Size = new Size(769, 342);
             Messagebox.TabIndex = 5;
             Messagebox.Text = "";
             Messagebox.TextChanged += Messagebox_TextChanged;
@@ -95,7 +95,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(114, 48);
+            label2.Location = new Point(144, 50);
             label2.Margin = new Padding(1, 0, 1, 0);
             label2.Name = "label2";
             label2.Size = new Size(19, 15);
@@ -106,7 +106,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(114, 77);
+            label3.Location = new Point(144, 79);
             label3.Margin = new Padding(1, 0, 1, 0);
             label3.Name = "label3";
             label3.Size = new Size(46, 15);
@@ -125,7 +125,7 @@
             // 
             // SendBT
             // 
-            SendBT.Location = new Point(769, 35);
+            SendBT.Location = new Point(814, 35);
             SendBT.Margin = new Padding(1);
             SendBT.Name = "SendBT";
             SendBT.Size = new Size(87, 40);
@@ -136,7 +136,7 @@
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(6, 350);
+            sign_out.Location = new Point(10, 401);
             sign_out.Margin = new Padding(1);
             sign_out.Name = "sign_out";
             sign_out.Size = new Size(102, 29);
@@ -149,7 +149,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(875, 418);
+            ClientSize = new Size(933, 453);
             Controls.Add(sign_out);
             Controls.Add(SendBT);
             Controls.Add(label4);
@@ -162,7 +162,7 @@
             Controls.Add(HomeFcompose);
             Margin = new Padding(1);
             Name = "Form3";
-            Text = "'";
+            Text = "Compose";
             FormClosed += Form3_FormClosed;
             ResumeLayout(false);
             PerformLayout();

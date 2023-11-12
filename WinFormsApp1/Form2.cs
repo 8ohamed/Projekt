@@ -13,6 +13,7 @@ using MimeKit;
 using MailKit.Security;
 using System.ComponentModel.DataAnnotations;
 using MailKit.Search;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace WinFormsApp1
 {
@@ -30,14 +31,14 @@ namespace WinFormsApp1
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             // Define columns for the MEssages DataGridView
             DataGridViewTextBoxColumn senderColumn = new DataGridViewTextBoxColumn();
-            senderColumn.HeaderText = "Sender";
-            senderColumn.Name = "Sender"; // This should match the column name you use in MEssages_CellContentClick
+            senderColumn.HeaderText = "Date";
+            senderColumn.Name = "DateCol"; // This should match the column name you use in MEssages_CellContentClick
             messag.Columns.Add(senderColumn);
 
-            DataGridViewTextBoxColumn subjectColumn = new DataGridViewTextBoxColumn();
-            subjectColumn.HeaderText = "Subject";
-            subjectColumn.Name = "Subject"; // This should match the column name you use in MEssages_CellContentClick
-            messag.Columns.Add(subjectColumn);
+            //  DataGridViewTextBoxColumn subjectColumn = new DataGridViewTextBoxColumn();
+            //subjectColumn.HeaderText = "Subject";
+            //subjectColumn.Name = "Subject"; // This should match the column name you use in MEssages_CellContentClick
+            //messag.Columns.Add(subjectColumn);
 
         }
 
@@ -97,8 +98,18 @@ namespace WinFormsApp1
                         // Get the list of folders from the first personal namespace
                         var folders = client.GetFolders(client.PersonalNamespaces[0]);
 
+                        // Define the list of folder names you want to retrieve
+                        var folderNamesToRetrieve = new List<string>
+                        {
+                           "INBOX",
+                           "[Gmail]/Important",
+                           "[Gmail]/Sent Mail",
+                           "[Gmail]/Trash",
+                           "[Gmail]/Spam"
+                         };
+
                         // Populate the folders_Box list box with folder names and folderNames list
-                        foreach (var folder in folders)
+                        foreach (var folder in folders.Where(f => folderNamesToRetrieve.Contains(f.FullName)))
                         {
                             folders_Box.Items.Add(folder.FullName);
                             folderNames.Add(folder.FullName); // Add folder names to the folderNames list
@@ -176,7 +187,6 @@ namespace WinFormsApp1
                     client.Authenticate(useremail, userpassword);
 
                     var folder = client.GetFolder(folderName);
-
                     if (folder != null)
                     {
                         folder.Open(FolderAccess.ReadOnly);
@@ -185,10 +195,10 @@ namespace WinFormsApp1
                         foreach (var message in messages)
                         {
                             messag.Rows.Add(
-                                     message.Envelope.From.ToString(),
-                                     message.Envelope.Subject,
-                                     message.Envelope.Date
-                                     );
+                                message.Envelope.From.ToString(),
+                                message.Envelope.Subject,
+                                message.Envelope.Date
+                            );
                         }
 
                         folder.Close();
@@ -210,37 +220,38 @@ namespace WinFormsApp1
 
 
 
-        private void ShowPleaseWaitForMessages()
-        {
-            // Show the "Please Wait" message box
-            MessageBox.Show("Please wait while retrieving messages...", "Loading", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            string selectedFolderName = folders_Box.SelectedItem as string;
 
-            // Retrieve messages
-            RetrieveMessages(selectedFolderName);
-        }
 
 
 
         private void folders_Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentFolder = folders_Box.SelectedItem as string; // Set the currentFolder when a folder is selected
-            RetrieveMessages(currentFolder);
-
             // Clear the messages_box when a new folder is selected
-            messag.Rows.Clear();
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            //this.Invoke(new Action(() => messag.Rows.Clear())); // Update the UI on the main thread
+
             string selectedFolderName = folders_Box.SelectedItem as string;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             // Check if a folder is selected
             if (!string.IsNullOrEmpty(selectedFolderName))
             {
-                // Show "Please Wait" message and retrieve messages
-                ShowPleaseWaitForMessages();
-                // Retrieve messages from the selected folder
-                RetrieveMessages(selectedFolderName);
+
+
+                // Retrieve messages on a separate thread and update the UI on the main thread
+                Task.Run(() =>
+                {
+                    // Show "Please Wait" message
+                    MessageBox.Show("Please wait while retrieving messages...", "Loading", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Invoke(new Action(() =>
+                    {
+                        RetrieveMessages(selectedFolderName);
+
+                    }));
+
+                });
+
+
             }
 
         }
@@ -297,6 +308,8 @@ namespace WinFormsApp1
             Compose.Show();
         }
 
+
+
         private void delete1_Click(object sender, EventArgs e)
         {
             if (messag.SelectedRows.Count == 0)
@@ -306,37 +319,97 @@ namespace WinFormsApp1
             }
 
             int rowIndex = messag.SelectedRows[0].Index;
+            string selectedFolderName = folders_Box.SelectedItem as string;
 
-            try
+            if (selectedFolderName.Equals("[Gmail]/Trash", StringComparison.OrdinalIgnoreCase))
             {
-                string selectedFolderName = folders_Box.SelectedItem as string;
-                using (var client = new ImapClient())
+
+                // Ask the user if they want to delete it permanently
+                var result = MessageBox.Show("Do you want to delete this email permanently?", "Delete Permanently", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    string useremail = Properties.Settings.Default.current_username;
-                    string userpassword = Properties.Settings.Default.current_password;
-
-                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-                    client.Authenticate(useremail, userpassword);
-
-                    var folder = client.GetFolder(selectedFolderName);
-                    folder.Open(FolderAccess.ReadWrite);
-
-                    var uids = folder.Search(SearchQuery.All);
-                    if (rowIndex < uids.Count)
+                    try
                     {
-                        var emailUniqueId = uids[rowIndex];
-                        folder.AddFlags(emailUniqueId, MessageFlags.Deleted, true); // Mark for deletion
-                        folder.Expunge(new UniqueId[] { emailUniqueId }); // Permanently delete marked email
-                        messag.Rows.RemoveAt(rowIndex); // Remove from DataGridView
-                    }
+                        using (var client = new ImapClient())
+                        {
+                            string useremail = Properties.Settings.Default.current_username;
+                            string userpassword = Properties.Settings.Default.current_password;
 
-                    folder.Close();
+                            client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                            client.Authenticate(useremail, userpassword);
+
+                            var folder = client.GetFolder(selectedFolderName);
+                            folder.Open(FolderAccess.ReadWrite);
+
+                            var uids = folder.Search(SearchQuery.All);
+                            if (rowIndex < uids.Count)
+                            {
+                                var emailUniqueId = uids[rowIndex];
+                                folder.AddFlags(emailUniqueId, MessageFlags.Deleted, true); // Mark for deletion
+                                folder.Expunge(new UniqueId[] { emailUniqueId }); // Permanently delete marked email
+                                messag.Rows.RemoveAt(rowIndex); // Remove from DataGridView
+                            }
+
+                            folder.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+            }
+            else
+            {
+                try
+                {
+                    using (var client = new ImapClient())
+                    {
+                        string useremail = Properties.Settings.Default.current_username;
+                        string userpassword = Properties.Settings.Default.current_password;
+
+                        client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                        client.Authenticate(useremail, userpassword);
+
+                        var folder = client.GetFolder(selectedFolderName);
+                        folder.Open(FolderAccess.ReadWrite);
+
+                        var uids = folder.Search(SearchQuery.All);
+                        if (rowIndex < uids.Count)
+                        {
+                            var emailUniqueId = uids[rowIndex];
+
+                            // Mark the email as spam by adding the \Flag \Spam flags
+                            folder.AddFlags(emailUniqueId, MessageFlags.Flagged, true);
+                            folder.AddFlags(emailUniqueId, MessageFlags.Seen, true);
+
+                            // Refresh the messages
+                            messag.Rows.Clear();
+                            RetrieveMessages(selectedFolderName);
+
+                            // Optionally move the email to the Spam folder
+                            string trashFolderName = "[Gmail]/Trash";
+                            var trashFolder = client.GetFolder(trashFolderName);
+                            if (trashFolder != null)
+                            {
+                                folder.MoveTo(new UniqueId[] { emailUniqueId }, trashFolder);
+                            }
+                        }
+
+                        folder.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+
+
+
         }
 
         private void movetospam_Click(object sender, EventArgs e)
@@ -395,14 +468,63 @@ namespace WinFormsApp1
         }
 
 
-
-
-
-
-
         private void markReadUnRead_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void important_Click(object sender, EventArgs e)
+        {
+            if (messag.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an email to mark as important.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int rowIndex = messag.SelectedRows[0].Index;
+
+            try
+            {
+                string selectedFolderName = folders_Box.SelectedItem as string;
+
+                using (var client = new ImapClient())
+                {
+                    string useremail = Properties.Settings.Default.current_username;
+                    string userpassword = Properties.Settings.Default.current_password;
+
+                    client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
+                    client.Authenticate(useremail, userpassword);
+
+                    var folder = client.GetFolder(selectedFolderName);
+                    folder.Open(FolderAccess.ReadWrite);
+
+                    var uids = folder.Search(SearchQuery.All);
+                    if (rowIndex < uids.Count)
+                    {
+                        var emailUniqueId = uids[rowIndex];
+
+                        // Move the email to the "Important" folder
+                        string importantFolderName = "[Gmail]/Important";
+                        var importantFolder = client.GetFolder(importantFolderName);
+
+                        if (importantFolder != null)
+                        {
+                            folder.MoveTo(new UniqueId[] { emailUniqueId }, importantFolder);
+                        }
+                    }
+
+                    folder.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+
     }
 }

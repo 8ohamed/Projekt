@@ -26,6 +26,12 @@ namespace WinFormsApp1
             this.emailContent = emailContent; // Assign the email content
         }
 
+
+        private void forward_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
         private void forward_Load(object sender, EventArgs e)
         {
             forwardbox.Text = emailContent;
@@ -99,7 +105,7 @@ namespace WinFormsApp1
                        
                         smtpClient.Send(mailMessage);
                         MessageBox.Show("Email sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
+                        this.Hide();
                     }
                 }
             }

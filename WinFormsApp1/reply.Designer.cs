@@ -60,6 +60,7 @@
             Controls.Add(sendreplyBT);
             Name = "reply";
             Text = "reply";
+            FormClosed += reply_FormClosed;
             Load += reply_Load;
             ResumeLayout(false);
         }

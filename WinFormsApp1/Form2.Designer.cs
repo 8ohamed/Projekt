@@ -34,19 +34,19 @@
             folders_Box = new ListBox();
             delete1 = new Button();
             movetospam = new Button();
-            markimpo = new Button();
             markReadUnRead = new Button();
             messag = new DataGridView();
+            composBT = new Button();
+            important = new Button();
             Sender = new DataGridViewTextBoxColumn();
             subject = new DataGridViewTextBoxColumn();
-            composBT = new Button();
             ((System.ComponentModel.ISupportInitialize)messag).BeginInit();
             SuspendLayout();
             // 
             // SearchBar
             // 
             SearchBar.Cursor = Cursors.Hand;
-            SearchBar.Location = new Point(175, 13);
+            SearchBar.Location = new Point(11, 10);
             SearchBar.Margin = new Padding(1);
             SearchBar.Name = "SearchBar";
             SearchBar.PlaceholderText = "Search ....";
@@ -55,7 +55,7 @@
             // 
             // sign_out
             // 
-            sign_out.Location = new Point(997, 13);
+            sign_out.Location = new Point(993, 495);
             sign_out.Margin = new Padding(1);
             sign_out.Name = "sign_out";
             sign_out.Size = new Size(79, 34);
@@ -68,15 +68,15 @@
             // 
             folders_Box.FormattingEnabled = true;
             folders_Box.ItemHeight = 15;
-            folders_Box.Location = new Point(11, 15);
+            folders_Box.Location = new Point(11, 75);
             folders_Box.Name = "folders_Box";
-            folders_Box.Size = new Size(160, 514);
+            folders_Box.Size = new Size(160, 454);
             folders_Box.TabIndex = 9;
             folders_Box.SelectedIndexChanged += folders_Box_SelectedIndexChanged;
             // 
             // delete1
             // 
-            delete1.Location = new Point(807, 7);
+            delete1.Location = new Point(548, 7);
             delete1.Name = "delete1";
             delete1.Size = new Size(92, 47);
             delete1.TabIndex = 14;
@@ -86,7 +86,7 @@
             // 
             // movetospam
             // 
-            movetospam.Location = new Point(709, 7);
+            movetospam.Location = new Point(450, 7);
             movetospam.Name = "movetospam";
             movetospam.Size = new Size(92, 47);
             movetospam.TabIndex = 15;
@@ -94,18 +94,9 @@
             movetospam.UseVisualStyleBackColor = true;
             movetospam.Click += movetospam_Click;
             // 
-            // markimpo
-            // 
-            markimpo.Location = new Point(611, 7);
-            markimpo.Name = "markimpo";
-            markimpo.Size = new Size(92, 47);
-            markimpo.TabIndex = 16;
-            markimpo.Text = "Mark Important";
-            markimpo.UseVisualStyleBackColor = true;
-            // 
             // markReadUnRead
             // 
-            markReadUnRead.Location = new Point(513, 7);
+            markReadUnRead.Location = new Point(345, 7);
             markReadUnRead.Name = "markReadUnRead";
             markReadUnRead.Size = new Size(92, 47);
             markReadUnRead.TabIndex = 17;
@@ -124,21 +115,9 @@
             messag.TabIndex = 18;
             messag.CellContentClick += messag_CellContentClick;
             // 
-            // Sender
-            // 
-            Sender.HeaderText = "The sender";
-            Sender.Name = "Sender";
-            Sender.ReadOnly = true;
-            // 
-            // subject
-            // 
-            subject.HeaderText = "The subject";
-            subject.Name = "subject";
-            subject.ReadOnly = true;
-            // 
             // composBT
             // 
-            composBT.Location = new Point(903, 7);
+            composBT.Location = new Point(875, 7);
             composBT.Margin = new Padding(1);
             composBT.Name = "composBT";
             composBT.Size = new Size(92, 47);
@@ -147,16 +126,41 @@
             composBT.UseVisualStyleBackColor = true;
             composBT.Click += composBT_Click;
             // 
+            // important
+            // 
+            important.Location = new Point(657, 7);
+            important.Name = "important";
+            important.Size = new Size(137, 47);
+            important.TabIndex = 20;
+            important.Text = "MoveTo Important";
+            important.UseVisualStyleBackColor = true;
+            important.Click += important_Click;
+            // 
+            // Sender
+            // 
+            Sender.HeaderText = "The sender";
+            Sender.Name = "Sender";
+            Sender.ReadOnly = true;
+            Sender.Width = 250;
+            // 
+            // subject
+            // 
+            subject.FillWeight = 150F;
+            subject.HeaderText = "The subject";
+            subject.Name = "subject";
+            subject.ReadOnly = true;
+            subject.Width = 150;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(1082, 534);
+            Controls.Add(important);
             Controls.Add(composBT);
             Controls.Add(messag);
             Controls.Add(markReadUnRead);
-            Controls.Add(markimpo);
             Controls.Add(movetospam);
             Controls.Add(delete1);
             Controls.Add(folders_Box);
@@ -164,7 +168,7 @@
             Controls.Add(SearchBar);
             Margin = new Padding(1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Inbox";
             FormClosed += Form2_FormClosed;
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)messag).EndInit();
@@ -179,11 +183,11 @@
         private ListBox folders_Box;
         private Button delete1;
         private Button movetospam;
-        private Button markimpo;
         private Button markReadUnRead;
         private DataGridView messag;
+        private Button composBT;
+        private Button important;
         private DataGridViewTextBoxColumn Sender;
         private DataGridViewTextBoxColumn subject;
-        private Button composBT;
     }
 }

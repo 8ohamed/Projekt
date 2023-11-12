@@ -43,7 +43,7 @@
             loginBT.Location = new Point(366, 288);
             loginBT.Margin = new Padding(1);
             loginBT.Name = "loginBT";
-            loginBT.Size = new Size(79, 21);
+            loginBT.Size = new Size(79, 35);
             loginBT.TabIndex = 0;
             loginBT.Text = "login";
             loginBT.UseVisualStyleBackColor = true;
@@ -75,9 +75,9 @@
             Emailabel.Location = new Point(220, 213);
             Emailabel.Margin = new Padding(1, 0, 1, 0);
             Emailabel.Name = "Emailabel";
-            Emailabel.Size = new Size(72, 15);
+            Emailabel.Size = new Size(44, 15);
             Emailabel.TabIndex = 3;
-            Emailabel.Text = "E-Mail adres";
+            Emailabel.Text = "E-Mail ";
             Emailabel.Click += label1_Click;
             // 
             // passwordlabel
@@ -93,11 +93,13 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Cursor = Cursors.No;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(261, 38);
+            pictureBox1.Location = new Point(182, 10);
             pictureBox1.Margin = new Padding(1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(287, 134);
+            pictureBox1.Size = new Size(429, 185);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
