@@ -13,7 +13,9 @@ using MimeKit;
 using MailKit.Security;
 using System.ComponentModel.DataAnnotations;
 using MailKit.Search;
+
 using Org.BouncyCastle.Asn1.X509;
+using Timer = System.Threading.Timer;
 
 namespace WinFormsApp1
 {
@@ -26,19 +28,16 @@ namespace WinFormsApp1
         {
             InitializeComponent();
 
-#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+#pragma warning disable CS8622 
             sign_out.Click += sign_out_Click;
-#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-            // Define columns for the MEssages DataGridView
+#pragma warning restore CS8622 
+
             DataGridViewTextBoxColumn senderColumn = new DataGridViewTextBoxColumn();
             senderColumn.HeaderText = "Date";
-            senderColumn.Name = "DateCol"; // This should match the column name you use in MEssages_CellContentClick
+            senderColumn.Name = "DateCol"; 
             messag.Columns.Add(senderColumn);
 
-            //  DataGridViewTextBoxColumn subjectColumn = new DataGridViewTextBoxColumn();
-            //subjectColumn.HeaderText = "Subject";
-            //subjectColumn.Name = "Subject"; // This should match the column name you use in MEssages_CellContentClick
-            //messag.Columns.Add(subjectColumn);
+
 
         }
 
@@ -47,7 +46,7 @@ namespace WinFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            RetrieveFolders(); // Call this method to retrieve folders when the form loads
+            RetrieveFolders(); 
 
         }
 
@@ -65,7 +64,7 @@ namespace WinFormsApp1
         {
             Form1 loginForm = new Form1();
             loginForm.Show();
-            this.Close();
+            this.Hide();
         }
 
 
@@ -194,10 +193,14 @@ namespace WinFormsApp1
 
                         foreach (var message in messages)
                         {
+                            
+                            
                             messag.Rows.Add(
                                 message.Envelope.From.ToString(),
                                 message.Envelope.Subject,
                                 message.Envelope.Date
+                              
+
                             );
                         }
 
@@ -227,31 +230,22 @@ namespace WinFormsApp1
 
         private void folders_Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Clear the messages_box when a new folder is selected
-            //this.Invoke(new Action(() => messag.Rows.Clear())); // Update the UI on the main thread
+            
 
             string selectedFolderName = folders_Box.SelectedItem as string;
 
-            // Check if a folder is selected
             if (!string.IsNullOrEmpty(selectedFolderName))
             {
+                MessageBox.Show("Please wait while retrieving messages...", "Loading", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                RetrieveMessages(selectedFolderName);
 
-                // Retrieve messages on a separate thread and update the UI on the main thread
-                Task.Run(() =>
+                // Check if the data grid view is not empty
+                if (messag.Rows.Count > 0)
                 {
-                    // Show "Please Wait" message
-                    MessageBox.Show("Please wait while retrieving messages...", "Loading", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        RetrieveMessages(selectedFolderName);
-
-                    }));
-
-                });
-
-
+                    // Close the message box immediately
+                    MessageBox.Show("Messages retrieved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
 
         }

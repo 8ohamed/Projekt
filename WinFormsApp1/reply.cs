@@ -1,21 +1,11 @@
 ﻿using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Net;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using MailKit.Net.Imap;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MailKit;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace WinFormsApp1
 {
@@ -52,79 +42,36 @@ namespace WinFormsApp1
 
             try
             {
-                var replyMessage = new MimeMessage();
-
-                // Add "Re: " to the subject
-                if (!originalMessage.Subject.StartsWith("Re:", StringComparison.OrdinalIgnoreCase))
-                    replyMessage.Subject = "Re:" + originalMessage.Subject;
-                else
-                    replyMessage.Subject = originalMessage.Subject;
-
-
-                replyMessage.Body = new TextPart("plain")
-                {
-                    Text = replyBox.Text // Set the message body from your replyBox
-                };
-
-
-                //1
-
-
                 var fromAddress = originalMessage.From;
                 string ADD = fromAddress.ToString();
-
-
                 string pattern = @"<([^>]*)>";
-                // Use Regex.Match to find the first match of the pattern in the input string.
                 Match match = Regex.Match(ADD, pattern);
                 var to = match.Groups[1].Value;
 
 
-                var ma = new MailboxAddress(to, to);
+                // Email subject and message
+                string recipientEmail = to;
+                string subject = "Re:" + originalMessage.Subject;
+                string message = replyBox.Text;
+                string useremail = Properties.Settings.Default.current_username;
+                string userpassword = Properties.Settings.Default.current_password;
 
-                replyMessage.To.Add(ma);
-
-
-
-
-                //2
-
-                // Use SMTP to send the reply
-                using (var smtpClient = new SmtpClient())
+                using (System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
                 {
-                    smtpClient.Connect("smtp.gmail.com",587, SecureSocketOptions.StartTls);
-                    smtpClient.Authenticate(useremail, userpassword);
-                    using (MailMessage mailMessage = new MailMessage(useremail, to))
+                    smtpClient.Port = 587; // Port for Gmail SMTP
+                    smtpClient.Credentials = new NetworkCredential(useremail, userpassword);
+                    smtpClient.EnableSsl = true;
+
+                    using (MailMessage mailMessage = new MailMessage(useremail, recipientEmail))
                     {
-                        smtpClient.Send(replyMessage);
+                        mailMessage.Subject = subject;
+                        mailMessage.Body = message;
+
+                        smtpClient.Send(mailMessage);
+                        MessageBox.Show("Email sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Hide();
                     }
-                    smtpClient.Disconnect(true);
                 }
-
-
-                // Connect to the IMAP server (e.g., Gmail)
-                //using (var client = new ImapClient())
-                //{
-
-                // client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
-
-                // Authenticate with your email and password
-                // client.Authenticate(useremail, userpassword);
-
-                // Open the sent folder
-                //var sentFolder = client.GetFolder(SpecialFolder.Sent);
-                //sentFolder.Open(FolderAccess.ReadWrite);
-
-                // Append the reply message to the sent folder
-                //sentFolder.Append(replyMessage);
-
-                // Disconnect from the server
-                //client.Disconnect(true);
-                //}
-
-
-                MessageBox.Show("Email sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
             }
 
 

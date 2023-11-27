@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 using System.Net.Mail;
 using System.Net;
 using MailKit.Security;
@@ -52,7 +44,6 @@ namespace WinFormsApp1
 
             string recipientEmail = receiverAdress.Text;
 
-            // Email subject and message
 
             string subject = Subjectbox.Text;
             string message = Messagebox.Text;
