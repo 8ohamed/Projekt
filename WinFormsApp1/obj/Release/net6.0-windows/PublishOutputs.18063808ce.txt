@@ -1,0 +1,14 @@
+C:\Users\derki\Desktop\WinFormsApp1.exe
+C:\Users\derki\Desktop\WinFormsApp1.dll
+C:\Users\derki\Desktop\WinFormsApp1.deps.json
+C:\Users\derki\Desktop\WinFormsApp1.runtimeconfig.json
+C:\Users\derki\Desktop\WinFormsApp1.dll.config
+C:\Users\derki\Desktop\WinFormsApp1.pdb
+C:\Users\derki\Desktop\BouncyCastle.Cryptography.dll
+C:\Users\derki\Desktop\MailKit.dll
+C:\Users\derki\Desktop\MimeKit.dll
+C:\Users\derki\Desktop\System.Formats.Asn1.dll
+C:\Users\derki\Desktop\System.Security.Cryptography.Pkcs.dll
+C:\Users\derki\Desktop\System.Text.Encoding.CodePages.dll
+C:\Users\derki\Desktop\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\derki\Desktop\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
